@@ -1,0 +1,84 @@
+JOB job0 submitter_chep.sub
+CATEGORY job0 GENERIC
+VARS job0 name="0" args="100000.00"
+
+JOB job1 submitter_chep.sub
+CATEGORY job1 GENERIC
+VARS job1 name="1" args="150000.00"
+
+JOB job2 submitter_chep.sub
+CATEGORY job2 GENERIC
+VARS job2 name="2" args="210000.00"
+
+JOB job3 submitter_chep.sub
+CATEGORY job3 GENERIC
+VARS job3 name="3" args="310000.00"
+
+JOB job4 submitter_chep.sub
+CATEGORY job4 GENERIC
+VARS job4 name="4" args="460000.00"
+
+JOB job5 submitter_chep.sub
+CATEGORY job5 GENERIC
+VARS job5 name="5" args="680000.00"
+
+JOB job6 submitter_chep.sub
+CATEGORY job6 GENERIC
+VARS job6 name="6" args="990000.00"
+
+JOB job7 submitter_chep.sub
+CATEGORY job7 GENERIC
+VARS job7 name="7" args="1000000.00"
+
+JOB job8 submitter_chep.sub
+CATEGORY job8 GENERIC
+VARS job8 name="8" args="1500000.00"
+
+JOB job9 submitter_chep.sub
+CATEGORY job9 GENERIC
+VARS job9 name="9" args="2100000.00"
+
+JOB job10 submitter_chep.sub
+CATEGORY job10 GENERIC
+VARS job10 name="10" args="3100000.00"
+
+JOB job11 submitter_chep.sub
+CATEGORY job11 GENERIC
+VARS job11 name="11" args="4600000.00"
+
+JOB job12 submitter_chep.sub
+CATEGORY job12 GENERIC
+VARS job12 name="12" args="6800000.00"
+
+JOB job13 submitter_chep.sub
+CATEGORY job13 GENERIC
+VARS job13 name="13" args="9900000.00"
+
+JOB job14 submitter_chep.sub
+CATEGORY job14 GENERIC
+VARS job14 name="14" args="10000000.00"
+
+JOB job15 submitter_chep.sub
+CATEGORY job15 GENERIC
+VARS job15 name="15" args="15000000.00"
+
+JOB job16 submitter_chep.sub
+CATEGORY job16 GENERIC
+VARS job16 name="16" args="21000000.00"
+
+JOB job17 submitter_chep.sub
+CATEGORY job17 GENERIC
+VARS job17 name="17" args="31000000.00"
+
+JOB job18 submitter_chep.sub
+CATEGORY job18 GENERIC
+VARS job18 name="18" args="46000000.00"
+
+JOB job19 submitter_chep.sub
+CATEGORY job19 GENERIC
+VARS job19 name="19" args="68000000.00"
+
+JOB job20 submitter_chep.sub
+CATEGORY job20 GENERIC
+VARS job20 name="20" args="99000000.00"
+

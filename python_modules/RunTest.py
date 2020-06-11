@@ -2,7 +2,6 @@
 
 import numpy as np
 
-
 print ("Choose options for testing modules: [1:Muon Range, 2:Read LHE files]")
 op=input("Input test number: ")
 if op=='1':
@@ -30,4 +29,5 @@ elif op=='2':
 			print ("Read LHE file module PASSED!")
 		else:
 			print ("Read LHE file module FAILED!")
-
+else:
+	print ("WARNING: If your system default is python2, please switch to python3 first.")

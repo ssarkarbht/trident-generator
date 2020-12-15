@@ -1,0 +1,248 @@
+Package: Neutrino Trident Generator
+Author: Sourav Sarkar
+Email: ssarkar1@ualberta.ca
+----------------------------------------------------------------
+
+Instruction for setting up the packages:
+
+Following instruction is based on the installation of softwares 
+that are necessary for generating full neutrino trident events 
+over a very broad energy range. Cobalt system is used for the 
+installation of all the softwares.
+
+#Load the required cvmfs environment:
+
+$eval `/cvmfs/icecube.opensciencegrid.org/py3-v4.1.1/setup.sh`
+
+#Prepare the parent directory:
+
+$mkdir NTPGenerator; cd NTPGenerator
+
+#Prepare the individual software directory:
+
+$mkdir CalcHEP MadGraph LHAPDF PYTHIA HEPMC
+
+=========================CalcHEP INSTALLATION===================
+For the purpose of trident event generation, we use the caclhep
+version: CalcHEP_3.7.1
+
+1. Go to CalcHEP directory
+$cd CalcHEP
+
+If you already have the package available in your $CalcHEP 
+directory, ignore the next step.
+
+2. Get the calchep package:
+$wget https://theory.sinp.msu.ru/~pukhov/CALCHEP/calchep_3.7.1.tgz
+
+3.Extract the package:
+$tar -xvzf calchep_3.7.1.tgz
+
+3.1 Put external model files:
+put the external model files in ./calchep_3.7.1/models/
+
+Next steps are copied from calchep installation instruction:
+4. Compile the package:
+$make or gmake
+
+If the package compiles successfully, you will get a message at 
+the end like this:
+# CalcHEP has compiled successfuly and can be started.
+
+If the compilation fails, please refer to the CalcHEP installation
+instruction for troubleshooting
+
+
+5. Creat the work directory:
+$./mkWORKDir ../<directory_name>
+
+CalcHEP is now successfully installed and interactive session can be run
+with the following steps:
+
+$cd ../<directory_name>
+$./calchep
+
+
+====================MadGraph+LHAPDF INSTALLATION==================
+
+To generate DIS trident events in MadGraph we use the external
+parton distribution function from LHAPDF, we therefore need to
+install and link LHAPDF with MadGraph. Both can be installed 
+independently and LHAPDF can be linked to Madgraph from within
+MadGraph.
+
+A. ***************LHAPDF INSTALLATION**********
+
+1. Go to LHAPDF directory:
+$cd $NTPGenerator/LHAPDF/
+
+If you already have the tar file in the directory, ignore the 
+following step
+
+2. Get the tar package:
+$wget https://lhapdf.hepforge.org/downloads/?f=LHAPDF-6.3.0.tar.gz -O LHAPDF-6.3.0.tar.gz
+
+3. Extract the package:
+$tar -xvzf LHAPDF-6.3.0.tar.gz
+
+Next steps are adopted from LHAPDF INSTALLATION instruction
+4.Go the package directory:
+$cd LHAPDF-6.3.0
+
+5.Configure the compiler:
+./configure --prefix=/path/to/install/diretory
+
+Here we have chosen ../install for installtion, however the path to
+the install directory should be an absolute path. So for our case,
+/path/to/install=$NTPGenerator/LHAPDF/install/
+
+6.compile the package;
+$make (optional for compilation using multiple cores) -j10
+
+7.Copy the libraries to instal directory:
+$make install
+
+
+To be able to use lhapdf system wise, add the lhapdf library path
+8. open your .bash_profile add the the following line:
+$export LD_LIBRARY_PATH=$NTPGenerator/LHAPDF/install/lib:$LD_LIBRARY_PATH
+
+
+By default, LHAPDF does not come with downloaded pdfsets, to use the 
+pdfsets we need, we can store them manually with the following steps:
+
+9.download the pdfsets:
+	for proton
+	a. $wget http://lhapdfsets.web.cern.ch/lhapdfsets/current/CT14qed_proton.tar.gz
+	b. $wget http://lhapdfsets.web.cern.ch/lhapdfsets/current/CT14qed_neutron.tar.gz
+10. extract the pdfsets:
+	$tar -xvzf CT14qed_proton.tar.gz
+	$tar -xvzf CT14qed_neutron.tar.gz
+
+LHAPDF is now sucessfully configured!
+
+B. ************MadGraph INSTALLTION ******************
+
+1. Go to MadGraph directory:
+$cd $NTPGenerator/MadGraph
+
+If you already have the package tar file, ignore the next step
+
+2. Get the tar package:
+$wget https://launchpad.net/mg5amcnlo/2.0/2.8.x/+download/MG5_aMC_v2.8.2.tar.gz
+
+3. Extract the package:
+$tar -xvzf MG5_aMC_v2.8.2.tar.gz
+
+4.Go to package directory:
+$cd MG5_aMC_v2_8_2
+
+5. No compilation needed!
+If you are on python2, you need to launch MadGraph using the following:
+
+$python bin/mg5_aMC
+
+And if you are on python3, launch MadGraph with the following:
+$./bin/mg5_aMC
+
+for the use of --diagram_filter while generating some particular
+trident process, python 3 launch fails to run user_function plugin.
+We therefore need to launch with python 2 for that purpose.
+
+To link lhapdf with MadGraph,
+
+After launching Madgraph,
+$set lhapdf /path/to/lhapdf/install/bin/lhapdf-config
+
+for our case, the path is: $NTPGenerator/LHAPDF/install/bin/lhapdf-config
+
+One can also add the lhapdf path to input/mg5_configuration.txt using the
+following line:
+
+lhapdf = $NTPGenerator/LHAPDF/install/bin/lhapdf-config
+
+
+======================HEPMC INSTALLATION=================================
+HepMC software is required by Pythia8 for writing the hadronized events
+into HepMC eventfile format. Therefore, HepMC package is required to be 
+installed and linked with Pythia8.
+
+1. Go to HepMC directory:
+$cd HEPMC
+
+If you already have the tar package, ignore the next step
+2. Get the tar package:
+$wget http://hepmc.web.cern.ch/hepmc/releases/HepMC3-3.2.2.tar.gz
+
+3. Extract the package:
+$tar -xvzf HepMC3-3.2.2.tar.gz
+
+4. Make the build directory:
+$mkdir hepmc3-build
+
+5. Go to build directory:
+$cd hepmc3-build
+
+6. Configure the compiler with following options:
+$cmake -DHEPMC3_ENABLE_PYTHON:BOOL=OFF -DCMAKE_INSTALL_PREFIX=../hepmc3-install ../HepMC3-3.2.2
+
+first option is to turn off python interface installation, as the interface
+will try to copy some library files to system wide directories which requires
+administrative priviledge, thus will fail the compilation
+
+second option is to install the package locally, not system wide
+
+7. Compile:
+$make -j10 (for running over multiple cores)
+
+8.Copy the libraries to install directory:
+$make install
+
+HepMC is now successfully installed on your system!
+
+
+======================Pythia8 INSTALLATION=============================
+
+1. Go to PYTHIA directory:
+$cd PYTHIA
+
+If you aready have the pythia8 package, ignore the next step
+2. Get the tar package:
+$wget http://home.thep.lu.se/~torbjorn/pythia8/pythia8303.tgz
+
+3. Extract the package:
+$tar -xvzf pythia8303.tgz
+
+4. Go to package directory:
+$cd pythia8303
+
+5.Configure the compiler options:
+$./configure --with-hepmc3-include=$NTPGenerator/HEPMC/hepmc3-install/include --with-hepmc3-lib=$NTPGenerator/HEPMC/hepmc3-install/lib64 --prefix=$NTPGenerator/PYTHIA/install
+
+6.Compile:
+$make -j10
+
+Pythia8 is now successfully installed!
+
+To get started with pythia8 hadronization script, refer to the example
+directory inside pythia package and do the following:
+
+7. Compile example main11.cc
+$make main11
+
+This example takes an input lhe file and performs hadronization based on
+the hard process in the file and outputs the events. We have a modified
+script of this example that takes the MadGraph processed lhe eventfiles
+as input and runs the hadronization and stores the output events in 
+hepmc3 file.
+
+To read the hepmc3 files, one convenient way is to use python interface
+of HepMC3 (which unfortunately was not installed with the package).
+However, we can install the standalone python-hepmc interface through
+pip with the following command:
+
+$pip install --user HepMC3
+
+After successful installation, one can access the module 'pyHepMC3'
+from within python 3
+==========================================================================

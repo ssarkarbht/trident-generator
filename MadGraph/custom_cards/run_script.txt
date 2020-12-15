@@ -1,0 +1,7 @@
+set lhapdf /home/ssarkar/NTPGenerator/LHAPDF/install/bin/lhapdf-config
+launch
+done
+set ebeam1 75250974.65772459
+set ebeam2 0.938
+set lhaid 13300
+done

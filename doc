@@ -1,0 +1,13 @@
+#Author: Sourav Sarkar
+#Email: ssarkar1@ualberta.ca
+
+This repository contains the required scripts and software packages to run event generation for neutrino trident production (NTP) process.
+
+NTP is a sub-dominant standard model process where an incoming neutrino scatters of the coulomb field of a nucleus and produces three outgoing leptons (one neutrino and two charged leptons) and a recoiled nucleus. As the interaction is a 2->4 particles scattering process, kinematical phasespace of the outgoing particls are less constrained and the momentum transfer to the nucleus through the coupled photon can have a very broad energy range even for high energy incoming neutrinos in the context of IceCube experiment. Based on the photon momentum transfer to the nucleus, different nuclear effects come into play for calculating the cross-section and can be devided into three major regimes: coherent, diffractive and deep inelastic (DIS). In the coherent regime, trident interaction probes into the columb field of the entire atom. Therefore cross-section for this regime is directly dependent on the choice of the material, as nuclear form factors are different for different materials. In the diffractive regime, interaction occurs in the columb field of individual nucleons (protons and neutrons) and the cross-section calculation indirectly depend on the interacting medium (as the number of protons and neutrons varies for different atoms). In the DIS regime, photon momentum transfer is high enough to probe into the quark and photon structure of the nucleons. We therefore need a description of parton distribution functions for the calculation of cross-section in this regime.
+
+Because of this complexity of the cross-section calculation and to avoid double-counting error that might arise from overlapping of one regime's interaction onto another, we need to consider 
+
+Following are the instruction on how to generate an example set of Neutrino Trident Events.
+
+1. Sample neutrino energies:
+	Run LeptonInjector
